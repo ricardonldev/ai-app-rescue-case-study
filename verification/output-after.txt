@@ -1,0 +1,28 @@
+
+=== CON EL ARREGLO (0000_original_generated_by_lovable.sql, 0001_security_fix.sql)
+✅ funciona  Uso normal: Ana reserva un martes a las 11:00
+      OK
+🔒 bloqueado  1. Un usuario cualquiera se hace admin y ve datos de clientes
+      function public.reclamar_duena() does not exist
+🔒 bloqueado  2a. Reserva doble a la misma hora
+      Esa hora ya está reservada
+🔒 bloqueado  2b. Reserva a las 03:00
+      Esa hora está fuera del horario
+🔒 bloqueado  3. El cliente cambia hora/estado de su reserva a lo que quiera
+      permission denied for table bookings
+✅ funciona  Uso normal: Ana cancela su reserva
+      OK
+🔒 bloqueado  Extra: reserva en domingo
+      La peluquería está cerrada ese día
+🔒 bloqueado  Extra: reserva en día marcado como cerrado
+      La peluquería está cerrada ese día
+🔒 bloqueado  Extra: servicio de 45 min a las 19:30 (acabaría tras el cierre)
+      Esa hora está fuera del horario
+🔒 bloqueado  Extra: hora que no es un hueco de 30 min (12:15)
+      Esa hora está fuera del horario
+🔒 bloqueado  Extra: otro usuario cancela la reserva de Ana
+      No se puede cancelar esa reserva
+✅ funciona  Uso normal: la dueña (asignada por SQL) ve las reservas
+      ve 2 reservas
+✅ funciona  Uso normal: la dueña cancela una reserva
+      OK

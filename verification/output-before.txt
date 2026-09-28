@@ -1,0 +1,14 @@
+
+=== ESQUEMA ORIGINAL DE LOVABLE (0000_original_generated_by_lovable.sql)
+✅ funciona  Uso normal: Ana reserva un martes a las 11:00
+      OK
+🔓 VULNERABLE  1. Un usuario cualquiera se hace admin y ve datos de clientes
+      se hizo admin y leyó: [{"nombre":"ana","telefono":"600000000"}]
+🔓 VULNERABLE  2a. Reserva doble a la misma hora
+      se aceptó la reserva duplicada
+🔓 VULNERABLE  2b. Reserva a las 03:00
+      se aceptó
+🔓 VULNERABLE  3. El cliente cambia hora/estado de su reserva a lo que quiera
+      se aceptó el cambio
+✅ funciona  Uso normal: Ana cancela su reserva
+      OK
