@@ -130,3 +130,9 @@ for (const r of results) {
   const icon = normal ? (r.vulnerable ? '❌ ROTO' : '✅ funciona') : (r.vulnerable ? '🔓 VULNERABLE' : '🔒 bloqueado');
   console.log(`${icon}  ${r.name}\n      ${r.detail}`);
 }
+
+// For CI: --expect-vulnerable (original schema) or --expect-secure (with the fix). Normal use must work in both.
+const attacks = results.filter((r) => !r.name.startsWith('Uso normal'));
+const normalOk = results.filter((r) => r.name.startsWith('Uso normal')).every((r) => !r.vulnerable);
+if (process.argv.includes('--expect-vulnerable') && !(normalOk && attacks.some((r) => r.vulnerable))) process.exitCode = 1;
+if (process.argv.includes('--expect-secure') && !(normalOk && attacks.every((r) => !r.vulnerable))) process.exitCode = 1;

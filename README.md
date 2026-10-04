@@ -1,5 +1,7 @@
 # Case study: rescuing an AI-generated booking app
 
+[![proof](https://github.com/ricardonldev/ai-app-rescue-case-study/actions/workflows/proof.yml/badge.svg)](https://github.com/ricardonldev/ai-app-rescue-case-study/actions/workflows/proof.yml)
+
 **An app built by Lovable from a single prompt compiled, passed type checks and "worked". Its database let any user become admin and read customers' phone numbers.** This repo shows how it was found, proved, fixed and verified, including in production.
 
 > **Demo case, not a client project.** On 28 Sep 2026 I asked [Lovable](https://lovable.dev) for a hair-salon booking app (the exact prompt is below) and took the result as is, exactly like a non-technical founder would.
@@ -71,6 +73,8 @@ npm install
 node verify.mjs ../migrations          # original schema: vulnerable
 node verify.mjs ../migrations --fix    # with the fix: blocked
 ```
+
+The same two runs happen on every push and once a week in GitHub Actions (badge above): the job fails if the original schema stops being vulnerable or if the fixed one lets any attack through or breaks normal use (`--expect-vulnerable` / `--expect-secure`).
 
 ## Out of scope (noted, not changed)
 - 162 formatting warnings already present in the generated code.
